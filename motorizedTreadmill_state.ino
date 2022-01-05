@@ -52,68 +52,44 @@ static const bool useProbeTrials = false;
 // Probability of those probe trials, if used (a fraction of 1, 1 = 100% of the time); 
 static const double probability = 0.20; 
 
+// Number of posssible entries in stageParameters.
+static const int possible_stages = 25;
+
+// Initialize the time stage parameters array with a lot of possible entries
+struct MouseRunner::StageParameters stageParameters[possible_stages];
+
+// DON'T EDIT:
+
+// Make a tag that motor and warningTone will use to make understanding what's happening in the serial monitor easier to understand later.
+// Explained further in comments at bottom.
+int activityTag;
+
+// Function that finds the size of an array.
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
+// Predefine your times (do it here, and with "static" so they're accessible throughout program).
+static uint32_t globalStartTime; 
+static uint32_t CurrentTime;
+
+// Declare your objects.
 static Motor motor;
-static MouseRunner mouseRunner(stageParameters, ARRAY_SIZE(stageParameters), motor);
-
-//         M0   M1    M2          RESOLUTION
-//------------------------------------------------
-//        LOW   LOW   LOW        FULL  STEP   1 Revolution  200  steps
-//        HIGH  LOW   LOW        HALF  STEP   1 Revolution  400  steps
-//        LOW   HIGH  LOW        1/4   STEP   1 Rrevolution  800  steps
-//        HIGH  HIGH  LOW        1/8   STEP   1 Rrevolution  1600 steps
-//        LOW   LOW   HIGH       1/16  STEP   1 Revolution  3200 steps
-//        HIGH  LOW   HIGH       1/32  STEP   1 Revolution  6400 steps
-
-static void randomize(void)
-{
-    // Randomize the speed order
-    //
-    // Creates a random seed for random sequence generator.
-    randomSeed(analogRead(1));
-    
-    for (size_t i = 0; i < ARRAY_SIZE(stageParameters); i++)
-    {
-        switch (stageParameters[i].type)
-        {
-            case MouseRunner::BehaviorType::Rest:
-            {
-                break;
-            }
-
-            case MouseRunner::BehaviorType::Movement:
-            {
-                // Pick a random index within the speed array
-                size_t j = random(0, ARRAY_SIZE(allSpeeds));
-    
-                stageParameters[i].speed = allSpeeds[j];
-                break;
-            }
-        }
-    }
-}
+static WarningTone warningTone(useMaintaining);
+static MouseRunner mouseRunner(stageParameters, motor, warningTone);
 
 void setup(void)
 {
-    Serial.begin(115200);
+  pinMode(A0, INPUT);  // for the trigger
+  Serial.begin(115200);
 
-    randomize();
-  
-    // report speed order
-    for (size_t i = 0; i < ARRAY_SIZE(stageParameters); i++)
-    {
-        Serial.print(stageParameters[i].speed);
-        Serial.print(", ");
-    }
+  // Create a random seed for random sequence generator.
+  randomSeed(analogRead(A1) * analogRead(A3) * analogRead(A5) * analogRead(A8) * analogRead(A10));
 
-    pinMode(A0, INPUT);  // for the trigger
-
-    Serial.println("Waiting for Trigger"); 
+  // Run the starting random functions and displays.
+  mouseRunner.StartNewTrial();
 }
 
 void loop(void)
 {
-    mouseRunner.RunOnce();
-    motor.RunOnce();
+  mouseRunner.RunOnce();
+  motor.RunOnce();
 }
