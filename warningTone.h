@@ -2,7 +2,7 @@
 // Sarah West
 // 9/17/21
 
-// Called from mouse_runner tab, within MouseRunner::RunOnce, case "Running".  
+// Called from mouse_runner_state tab, within MouseRunner::RunOnce, case "Running".  
 
 // Compiler instructions
 #pragma once

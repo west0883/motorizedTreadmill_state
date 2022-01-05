@@ -1,4 +1,4 @@
-#include "mouse_runner.h"
+#include "mouse_runner_state.h"
 
 /**
  * \brief Creates a mouse runner
@@ -19,6 +19,34 @@ MouseRunner::MouseRunner(const struct StageParameters *stageParameters, Motor &m
 {
     
 }
+
+// Uses StageBehaviors to create times and speeds for StageBehaviors
+void MouseRunner::RandomizeBehaviors(void)
+{
+  for (size_t i = 1; i < ARRAY_SIZE(stageBehaviors) ; i++)
+  {
+    BehaviorType behavior = stageBehaviors[i].behaviorType;
+
+    switch (behavior)
+    {
+       case BehaviorType::Rest:
+       {
+         break;
+       }
+       
+       case BehaviorType::Movement1:
+       {
+         break;
+       }
+
+       case BehaviorType::Movement2:
+       {
+         break;
+       }
+    }
+  }
+}
+
 
 /**
  * \brief Starts the mouse runner

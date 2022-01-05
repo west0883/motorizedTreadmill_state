@@ -4,29 +4,24 @@
 // be sure you have the AccelStepper library installed
 
 #include <stdint.h>
-
 #include <AccelStepper.h>
 #include "randomizing_functions.h"
+#include "probe.h"
+#include "motor.h"
 #include "tone.h"
 #include "warningTone.h"
-
-#include "motor.h"
-#include "mouse_runner.h"
-
-
-uint32_t StartTime;
-uint32_t CurrentTime;
+#include "mouse_runner_state.h"
 
 // write out what speeds you want to include; ***YOU CAN EDIT THIS***
 static constexpr int Speeds1[] = {800};
 static constexpr int Speeds2[] = {}; 
 
 // Time range for rest and movement (in seconds)
-static constexpr in RestTime[] = {5, 30};
-static constexpr in MoveTime[] = {5, 15};
+static constexpr int RestTime[] = {5, 30};
+static constexpr int MoveTime[] = {5, 15};
 
 // write out the parameter matrix; ***YOU CAN EDIT THIS*** 
-static struct MouseRunner::StageParameters stageParameters[] = {
+static struct MouseRunner::StageBehaviors stageBehaviors[] = {
     {MouseRunner::BehaviorType::Rest,     },
     {MouseRunner::BehaviorType::Movement1 },
     {MouseRunner::BehaviorType::Rest      },

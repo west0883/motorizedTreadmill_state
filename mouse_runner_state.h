@@ -14,6 +14,18 @@ class MouseRunner
     public:
 
         //uint32_t globalStartTime; 
+
+        enum class BehaviorType
+        {
+          Rest,
+          Movement1,
+          Movement2,        
+        };
+
+        struct StageBehaviors
+        {
+          BehaviorType behaviorType;
+        };
         
         struct StageParameters
         {
@@ -48,7 +60,7 @@ class MouseRunner
             Done,
 
         };
-        
+
         enum State state = State::Waiting;
 
         // Our stages
@@ -89,6 +101,7 @@ class MouseRunner
     public:
         MouseRunner(const struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone);
 
+        void RandomizeBehaviors(void);
         void Start(void);
         void Stop(void);
         void RunOnce(void);
