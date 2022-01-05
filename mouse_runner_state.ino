@@ -30,24 +30,64 @@ void MouseRunner::RandomizeBehaviors(void)
     switch (behavior)
     {
        case BehaviorType::Rest:
-       {
+       { 
+         // Speed
+         this->stageParameters[i].speed = 0; 
+
+         // Duration
+         int TimeRanges[ARRAY_SIZE(RestTime)] = {RestTime};
+         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         
+         this->stageParameters[i].duration = stage_duration; 
+                  
          break;
        }
        
        case BehaviorType::Movement1:
        {
+         // Speed
+         
+         // Duration
+         int TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
+         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         
+         this->stageParameters[i].duration = stage_duration; 
+        
          break;
        }
 
        case BehaviorType::Movement2:
        {
+         // Speed
+
+         // Duration
+         int TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
+         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         
+         this->stageParameters[i].duration = stage_duration; 
+         
          break;
        }
     }
   }
 }
 
+uint32_t MouseRunner::RandomDuration(int TimeRanges[])
+{
+  // Find a random time within the range
+  uint32_t stage_duration = random(TimeRanges[0], TimeRanges[1] + 1) * (1000);
+  
+  return stage_duration;
+}
 
+int MouseRunner::RandomSpeeds(int Speeds[])
+{
+  // Pick a random index within the speed array
+  size_t j = random(0, ARRAY_SIZE(Speeds));
+
+  // Place in parameter array
+  uint32_t stage_duration = Speeds[j];
+}
 /**
  * \brief Starts the mouse runner
  *
@@ -134,10 +174,13 @@ void MouseRunner::StartNewTrial(void)
     this->currentStage = 0;
 
     // Randomize times and speeds based on stages. Edits stageParameters.
-    this->RandomizeBehaviors();
+    RandomizeBehaviors();
+
+    // Randomize accelerations based on newly-edited stageParameters.
+    randomizeAccel(ARRAY_SIZE(stageBehaviors));
 
     // Report stages to be run
-    HeaderReport(randomTime.count);
+    HeaderReport(ARRAY_SIZE(stageBehaviors));
   
     // If using a trigger, print out that it's waiting.
     if (useTrigger)

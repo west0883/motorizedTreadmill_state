@@ -6,7 +6,7 @@
 
 
 // Creates a function that randomizes the speed order. Make dependent on speedDiff value to determine what kind of change it is.
-static void randomizeAccel(time_outputs randomTime)
+static void randomizeAccel(int count)
 {
     // Only do this if user has said they want to randomize the accelerations.
     if (useAccels)
@@ -15,7 +15,7 @@ static void randomizeAccel(time_outputs randomTime)
         int min_speed = getMinSpeed(); 
         
         // Don't include index "0" because that is the initial rest period. 
-        for (size_t i = 1; i <= randomTime.count ; i++)
+        for (size_t i = 1; i <= count ; i++)
         {
            // Use previous stage's speed difference (accel set at start of new stage, when motor transition begins)
     
@@ -139,12 +139,22 @@ int getMinSpeed(void)
 {
     // A trick to find the maximum possible value for an int, so everything afterwards is always less than that
     int min_speed = std::numeric_limits<int>::max();
-    
-    for (std::size_t i = 0; i < ARRAY_SIZE(allSpeeds); i++)
+
+    // Go through first possible list of speeds
+    for (std::size_t i = 0; i < ARRAY_SIZE(Speeds1); i++)
     {
-        if ((allSpeeds[i] > 0) && (allSpeeds[i] < min_speed))
+        if ((Speeds1[i] > 0) && (Speeds1[i] < min_speed))
         {
-            min_speed = allSpeeds[i];
+            min_speed = Speeds1[i];
+        }
+    }
+    
+    // Go through second list of speeds.
+    for (std::size_t i = 0; i < ARRAY_SIZE(Speeds2); i++)
+    {
+        if ((Speeds2[i] > 0) && (Speeds2[i] < min_speed))
+        {
+            min_speed = Speeds2[i];
         }
     }
     

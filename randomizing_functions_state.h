@@ -6,8 +6,7 @@ struct time_outputs {
   int count;
 };
 
-
-static void randomizeAccel(time_outputs randomTime);
+static void randomizeAccel(int count);
 void Report(float targetSpeed, int activityTag, String message);
 void HeaderReport(int count); 
 int getMinSpeed(void);

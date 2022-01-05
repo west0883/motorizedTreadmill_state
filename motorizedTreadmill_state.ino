@@ -17,8 +17,8 @@ static constexpr int Speeds1[] = {800};
 static constexpr int Speeds2[] = {}; 
 
 // Time range for rest and movement (in seconds)
-static constexpr int RestTime[] = {5, 30};
-static constexpr int MoveTime[] = {5, 15};
+static int RestTime[] = {5, 30};
+static int MoveTime[] = {5, 15};
 
 // write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
 static constexpr int accelsStartStop[] = {400}; //400, 800
@@ -38,6 +38,9 @@ static struct MouseRunner::StageBehaviors stageBehaviors[] = {
     {MouseRunner::BehaviorType::Movement1 },
     {MouseRunner::BehaviorType::Rest      }
 };
+
+// The amount of time before a stage switch the mouse is given the warning sound (ms).
+uint32_t WarnTime = 1500;
 
 // Flag for if the trial number count (used with Putty) should be used, and the initial trial number (1 less than first actual). 
 bool useTrialNumber = true;
