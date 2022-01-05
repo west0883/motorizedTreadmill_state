@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 #include <AccelStepper.h>
-#include "randomizing_functions.h"
+#include "randomizing_functions_state.h"
 #include "probe.h"
 #include "motor.h"
 #include "tone.h"

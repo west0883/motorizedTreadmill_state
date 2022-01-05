@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "randomizing_functions.h"
+#include "randomizing_functions_state.h"
 #include "probe.h"
 #include "warningTone.h"
 #include "motor.h"
