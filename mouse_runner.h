@@ -11,7 +11,8 @@ class MouseRunner
         enum class BehaviorType
         {
             Rest,
-            Movement
+            Movement1,
+            Movement2
         };
         
         struct StageParameters

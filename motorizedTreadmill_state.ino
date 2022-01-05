@@ -6,31 +6,51 @@
 #include <stdint.h>
 
 #include <AccelStepper.h>
+#include "randomizing_functions.h"
+#include "tone.h"
+#include "warningTone.h"
 
 #include "motor.h"
 #include "mouse_runner.h"
+
 
 uint32_t StartTime;
 uint32_t CurrentTime;
 
 // write out what speeds you want to include; ***YOU CAN EDIT THIS***
-static constexpr int allSpeeds[] = {800, 1200, 1600};
+static constexpr int Speeds1[] = {800};
+static constexpr int Speeds2[] = {}; 
+
+// Time range for rest and movement (in seconds)
+static constexpr in RestTime[] = {5, 30};
+static constexpr in MoveTime[] = {5, 15};
 
 // write out the parameter matrix; ***YOU CAN EDIT THIS*** 
 static struct MouseRunner::StageParameters stageParameters[] = {
-    // rest or move?, time (in ms)
-    {MouseRunner::BehaviorType::Rest,       2000},
-    {MouseRunner::BehaviorType::Movement,   30000},
-    {MouseRunner::BehaviorType::Rest,       30000},
-    {MouseRunner::BehaviorType::Movement,   30000},
-    {MouseRunner::BehaviorType::Rest,       30000},
-    {MouseRunner::BehaviorType::Movement,   30000},
-    {MouseRunner::BehaviorType::Rest,       30000},
-    {MouseRunner::BehaviorType::Movement,   30000},
-    {MouseRunner::BehaviorType::Rest,       30000},
-    {MouseRunner::BehaviorType::Movement,   30000},
-    {MouseRunner::BehaviorType::Rest,       30000}
+    {MouseRunner::BehaviorType::Rest,     },
+    {MouseRunner::BehaviorType::Movement1 },
+    {MouseRunner::BehaviorType::Rest      },
+    {MouseRunner::BehaviorType::Movement1 },
+    {MouseRunner::BehaviorType::Rest      },
+    {MouseRunner::BehaviorType::Movement1 },
+    {MouseRunner::BehaviorType::Rest      },
+    {MouseRunner::BehaviorType::Movement1 },
+    {MouseRunner::BehaviorType::Rest      },
+    {MouseRunner::BehaviorType::Movement1 },
+    {MouseRunner::BehaviorType::Rest      }
 };
+
+// Make a flag for if an input trigger (from Spike2) should be used.
+static const bool useTrigger = false; 
+
+// Make a flag for if maintaining tones should be used; 
+static const bool useMaintaining = false; 
+
+// Make a flag for if probe trials should be used.
+static const bool useProbeTrials = false;
+
+// Probability of those probe trials, if used (a fraction of 1, 1 = 100% of the time); 
+static const double probability = 0.20; 
 
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
