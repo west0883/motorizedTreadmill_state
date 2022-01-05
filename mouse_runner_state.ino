@@ -132,20 +132,9 @@ void MouseRunner::StartNewTrial(void)
 
     // Reset currentStage to 0; 
     this->currentStage = 0;
-    
-    // Randomize time. Edits stageParameters.
-    struct time_outputs randomTime = randomizeTime();
 
-    this->stageTotal = randomTime.count; 
-    
-    // Randomize speed. Edits stageParameters.
-    randomizeSpeed(randomTime);
-  
-    // Randomize accelerations. Edits stageParameters. 
-    randomizeAccel(randomTime); 
-    
-    // Randomizes probe trials. Edits stageParameters. 
-    probeTrials(useProbeTrials, randomTime.count, probability);
+    // Randomize times and speeds based on stages. Edits stageParameters.
+    this->RandomizeBehaviors();
 
     // Report stages to be run
     HeaderReport(randomTime.count);
