@@ -20,6 +20,10 @@ static constexpr int Speeds2[] = {};
 static constexpr int RestTime[] = {5, 30};
 static constexpr int MoveTime[] = {5, 15};
 
+// write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
+static constexpr int accelsStartStop[] = {400}; //400, 800
+static constexpr int accelsSpeedChange[] = {200}; //200, 800
+
 // write out the parameter matrix; ***YOU CAN EDIT THIS*** 
 static struct MouseRunner::StageBehaviors stageBehaviors[] = {
     {MouseRunner::BehaviorType::Rest,     },
@@ -35,11 +39,18 @@ static struct MouseRunner::StageBehaviors stageBehaviors[] = {
     {MouseRunner::BehaviorType::Rest      }
 };
 
+// Flag for if the trial number count (used with Putty) should be used, and the initial trial number (1 less than first actual). 
+bool useTrialNumber = true;
+int trial_number = 0;
+
 // Make a flag for if an input trigger (from Spike2) should be used.
 static const bool useTrigger = false; 
 
 // Make a flag for if maintaining tones should be used; 
 static const bool useMaintaining = false; 
+
+// Make a flag for if random accelerations should be used.
+static const bool useAccels = true; 
 
 // Make a flag for if probe trials should be used.
 static const bool useProbeTrials = false;
