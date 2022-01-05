@@ -13,8 +13,8 @@
 #include "mouse_runner_state.h"
 
 // write out what speeds you want to include; ***YOU CAN EDIT THIS***
-static constexpr int Speeds1[] = {800};
-static constexpr int Speeds2[] = {}; 
+static int Speeds1[] = {800};
+static int Speeds2[] = {}; 
 
 // Time range for rest and movement (in seconds)
 static int RestTime[] = {5, 30};
