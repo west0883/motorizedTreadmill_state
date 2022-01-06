@@ -26,7 +26,7 @@ static uint32_t MoveTime[] = {10, 30};
 static constexpr int accelsStartStop[] = {400}; //400, 800
 static constexpr int accelsSpeedChange[] = {200}; //200, 800
 
-// write out the parameter matrix;
+// write out the parameter matrix; Determines what type of behavior each stage will be.
 static struct StageBehaviors stageBehaviors[] = {
   {BehaviorType::Rest,     },
   {BehaviorType::Movement1 },
