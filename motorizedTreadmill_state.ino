@@ -12,7 +12,9 @@
 #include "warningTone.h"
 #include "mouse_runner_state.h"
 
-// write out what speeds you want to include; ***YOU CAN EDIT THIS***
+// PARAMETERS TO EDIT
+
+// Write out what speeds you want to include. Both must not be empty, even if one isn't use.
 static int Speeds1[] = {800};
 static int Speeds2[] = {600}; 
 
@@ -24,19 +26,19 @@ static uint32_t MoveTime[] = {5, 15};
 static constexpr int accelsStartStop[] = {400}; //400, 800
 static constexpr int accelsSpeedChange[] = {200}; //200, 800
 
-// write out the parameter matrix; ***YOU CAN EDIT THIS*** 
+// write out the parameter matrix; *
 static struct StageBehaviors stageBehaviors[] = {
-    {MouseRunner::BehaviorType::Rest,     },
-    {MouseRunner::BehaviorType::Movement1 },
-    {MouseRunner::BehaviorType::Rest      },
-    {MouseRunner::BehaviorType::Movement1 },
-    {MouseRunner::BehaviorType::Rest      },
-    {MouseRunner::BehaviorType::Movement1 },
-    {MouseRunner::BehaviorType::Rest      },
-    {MouseRunner::BehaviorType::Movement1 },
-    {MouseRunner::BehaviorType::Rest      },
-    {MouseRunner::BehaviorType::Movement1 },
-    {MouseRunner::BehaviorType::Rest      }
+    {BehaviorType::Rest,     },
+    {BehaviorType::Movement1 },
+    {BehaviorType::Rest      },
+    {BehaviorType::Movement1 },
+    {BehaviorType::Rest      },
+    {BehaviorType::Movement1 },
+    {BehaviorType::Rest      },
+    {BehaviorType::Movement1 },
+    {BehaviorType::Rest      },
+    {BehaviorType::Movement1 },
+    {BehaviorType::Rest      }
 };
 
 // The amount of time before a stage switch the mouse is given the warning sound (ms).
