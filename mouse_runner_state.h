@@ -64,7 +64,7 @@ class MouseRunner
         enum State state = State::Waiting;
 
         // Our stages
-        const struct StageParameters *stageParameters;
+        struct StageParameters *stageParameters;
 
         // When we started our last stage
         uint32_t timeStageStarted;
@@ -99,7 +99,7 @@ class MouseRunner
         void StartNextStage(void);
         
     public:
-        MouseRunner(const struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone);
+        MouseRunner(struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone);
   
         void RandomizeBehaviors(void);
         uint32_t RandomDuration(uint32_t MinTime, uint32_t MaxTime);
