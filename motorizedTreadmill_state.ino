@@ -25,7 +25,7 @@ static constexpr int accelsStartStop[] = {400}; //400, 800
 static constexpr int accelsSpeedChange[] = {200}; //200, 800
 
 // write out the parameter matrix; ***YOU CAN EDIT THIS*** 
-static struct MouseRunner::StageBehaviors stageBehaviors[] = {
+static struct StageBehaviors stageBehaviors[] = {
     {MouseRunner::BehaviorType::Rest,     },
     {MouseRunner::BehaviorType::Movement1 },
     {MouseRunner::BehaviorType::Rest      },

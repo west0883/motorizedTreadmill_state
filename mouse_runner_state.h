@@ -14,18 +14,6 @@ class MouseRunner
     public:
 
         //uint32_t globalStartTime; 
-
-        enum class BehaviorType
-        {
-          Rest,
-          Movement1,
-          Movement2,        
-        };
-
-        struct StageBehaviors
-        {
-          BehaviorType behaviorType;
-        };
         
         struct StageParameters
         {
