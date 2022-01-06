@@ -12,7 +12,7 @@
  *
  * \return none
  */
-MouseRunner::MouseRunner(struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone):
+MouseRunner::MouseRunner(const struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone):
     stageParameters(stageParameters),
     motor(motor),
     warningTone(warningTone)
