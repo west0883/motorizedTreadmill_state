@@ -114,10 +114,11 @@ void MouseRunner::StartNewTrial(void)
     // Randomize accelerations based on newly-edited stageParameters.
     randomizeAccel(ARRAY_SIZE(stageBehaviors)-1);
 
-    // Report stages to be run
-    HeaderReport(ARRAY_SIZE(stageBehaviors)-1);
+    // Calculate total time (for reporting in HeaderReport);
+    uint32_t totalTime = GetTotalTime(ARRAY_SIZE(stageBehaviors)-1);
 
-    Serial.println(ARRAY_SIZE(stageBehaviors));
+    // Report stages to be run
+    HeaderReport(ARRAY_SIZE(stageBehaviors)-1, totalTime);
     
     // If using a trigger, print out that it's waiting.
     if (useTrigger)

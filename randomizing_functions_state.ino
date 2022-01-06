@@ -123,6 +123,17 @@ static void randomizeAccel(int count)
     }
 }
 
+uint32_t GetTotalTime(int count)
+{
+  uint32_t totalTime = 0;
+
+  for (size_t i = 1; i <= count ; i++)
+  {
+    totalTime += stageParameters[i].duration;
+  }
+  return totalTime;
+}
+
 // A function that writes out what goes to the serial monitor.
 void Report(float targetSpeed, float accel, int activityTag, String message)
 {
@@ -150,7 +161,7 @@ void Report(float targetSpeed, float accel, int activityTag, String message)
     Serial.println(message); 
 }
 
-void HeaderReport(int count)
+void HeaderReport(int count, uint32_t totalTime)
 {
   // Report trial number
   if (useTrialNumber) 
@@ -162,6 +173,10 @@ void HeaderReport(int count)
   // Report total number of stages
   Serial.print("Total number of stages: ");
   Serial.println(count + 1);
+
+  // Report total time of trial
+  Serial.print("Total time: ");
+  Serial.println(totalTime);
 
   // report speeds and times HeaderReport(int randomTime.count); 
   Serial.print("Time, Speed");
