@@ -1,6 +1,6 @@
 // Sarah West
 // 3/9/21
-// code edited from https://github.com/troscianko/optomotor/blob/master/Arduino_Code/Optomotor_Controller_Simple_IR.ino 
+// code edited from https://github.com/troscianko/optomotor/blob/master/Arduino_Code/Optomotor_Controller_Simple_IR.ino
 // be sure you have the AccelStepper library installed
 
 #include <stdint.h>
@@ -16,57 +16,57 @@
 
 // Write out what speeds you want to include. Both must not be empty, even if one isn't use.
 static int Speeds1[] = {600, 800};
-static int Speeds2[] = {600, 800}; 
+static int Speeds2[] = {600, 800};
 
 // Time range for rest and movement (in seconds)
 static uint32_t RestTime[] = {10, 35};
-static uint32_t MoveTime[] = {10, 20};
+static uint32_t MoveTime[] = {10, 25};
 
 // write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
 static constexpr int accelsStartStop[] = {400}; //400, 800
-static constexpr int accelsSpeedChange[] = {400}; //200, 800
+static constexpr int accelsSpeedChange[] = {200}; //200, 800
 
-// write out the parameter matrix; 
+// write out the parameter matrix;
 static struct StageBehaviors stageBehaviors[] = {
-    {BehaviorType::Rest,     },
-    {BehaviorType::Movement1 },
-    {BehaviorType::Movement2 },
-    {BehaviorType::Rest      },
-    {BehaviorType::Movement1 },
-    {BehaviorType::Movement2 },
-    {BehaviorType::Rest      },
-    {BehaviorType::Movement1 },
-    {BehaviorType::Movement2 },
-    {BehaviorType::Rest      },
-    {BehaviorType::Movement1 },
-    {BehaviorType::Movement2 },
-    {BehaviorType::Rest      },
-    {BehaviorType::Movement1 },
-    {BehaviorType::Movement2 },
-    {BehaviorType::Rest      }
+  {BehaviorType::Rest,     },
+  {BehaviorType::Movement1 },
+  {BehaviorType::Movement2 },
+  {BehaviorType::Rest      },
+  {BehaviorType::Movement1 },
+  {BehaviorType::Movement2 },
+  {BehaviorType::Rest      },
+  {BehaviorType::Movement1 },
+  {BehaviorType::Movement2 },
+  {BehaviorType::Rest      },
+  {BehaviorType::Movement1 },
+  {BehaviorType::Movement2 },
+  {BehaviorType::Rest      },
+  {BehaviorType::Movement1 },
+  {BehaviorType::Movement2 },
+  {BehaviorType::Rest      }
 };
 
 // The amount of time before a stage switch the mouse is given the warning sound (ms).
 uint32_t WarnTime = 1500;
 
-// Flag for if the trial number count (used with Putty) should be used, and the initial trial number (1 less than first actual). 
+// Flag for if the trial number count (used with Putty) should be used, and the initial trial number (1 less than first actual).
 bool useTrialNumber = true;
 int trial_number = 0;
 
 // Make a flag for if an input trigger (from Spike2) should be used.
-static const bool useTrigger = false; 
+static const bool useTrigger = false;
 
-// Make a flag for if maintaining tones should be used; 
-static const bool useMaintaining = true; 
+// Make a flag for if maintaining tones should be used;
+static const bool useMaintaining = false;
 
 // Make a flag for if random accelerations should be used.
-static const bool useAccels = true; 
+static const bool useAccels = true;
 
 // Make a flag for if probe trials should be used.
 static const bool useProbeTrials = false;
 
-// Probability of those probe trials, if used (a fraction of 1, 1 = 100% of the time); 
-static const double probability = 0.20; 
+// Probability of those probe trials, if used (a fraction of 1, 1 = 100% of the time);
+static const double probability = 0.20;
 
 // Number of posssible entries in stageParameters.
 static const int possible_stages = 25;
@@ -84,7 +84,7 @@ int activityTag;
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
 // Predefine your times (do it here, and with "static" so they're accessible throughout program).
-static uint32_t globalStartTime; 
+static uint32_t globalStartTime;
 static uint32_t CurrentTime;
 
 // Declare your objects.
