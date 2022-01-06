@@ -19,14 +19,14 @@ static int Speeds1[] = {800};
 static int Speeds2[] = {600}; 
 
 // Time range for rest and movement (in seconds)
-static uint32_t RestTime[] = {5, 30};
-static uint32_t MoveTime[] = {5, 15};
+static uint32_t RestTime[] = {10, 35};
+static uint32_t MoveTime[] = {10, 20};
 
 // write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
 static constexpr int accelsStartStop[] = {400}; //400, 800
-static constexpr int accelsSpeedChange[] = {200}; //200, 800
+static constexpr int accelsSpeedChange[] = {400}; //200, 800
 
-// write out the parameter matrix; *
+// write out the parameter matrix; 
 static struct StageBehaviors stageBehaviors[] = {
     {BehaviorType::Rest,     },
     {BehaviorType::Movement1 },
@@ -52,7 +52,7 @@ int trial_number = 0;
 static const bool useTrigger = false; 
 
 // Make a flag for if maintaining tones should be used; 
-static const bool useMaintaining = false; 
+static const bool useMaintaining = true; 
 
 // Make a flag for if random accelerations should be used.
 static const bool useAccels = true; 
