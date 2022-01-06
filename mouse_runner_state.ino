@@ -105,6 +105,9 @@ void MouseRunner::StartNewTrial(void)
     // Reset currentStage to 0; 
     this->currentStage = 0;
 
+    // Get total number of stages. 
+    this->stageTotal = ARRAY_SIZE(stageBehaviors); 
+    
     // Randomize times and speeds based on stages. Edits stageParameters.
     RandomizeBehaviors();
 
