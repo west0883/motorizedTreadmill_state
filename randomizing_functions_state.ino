@@ -6,7 +6,7 @@
 // Uses stageBehaviors to create times and speeds for stageParameters
 void RandomizeBehaviors(void)
 {
-  for (size_t i = 1; i < ARRAY_SIZE(stageBehaviors) ; i++)
+  for (size_t i = 0; i <= ARRAY_SIZE(stageBehaviors) ; i++)
   {
     BehaviorType behavior = stageBehaviors[i].behaviorType;
 
@@ -58,6 +58,12 @@ void RandomizeBehaviors(void)
          break;
        }
     }
+  }
+ // Calculate the speed difference (for warning tone and easier use of probe trials).
+   for (size_t i = 0; i < ARRAY_SIZE(stageBehaviors) ; i++)
+  {
+      // Place in parameter array
+      stageParameters[i].speed_difference = stageParameters[i + 1].speed - stageParameters[i].speed;
   }
 }
 
