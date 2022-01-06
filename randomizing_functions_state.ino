@@ -15,13 +15,13 @@ void RandomizeBehaviors(void)
        case BehaviorType::Rest:
        { 
          // Speed
-         this->stageParameters[i].speed = 0; 
+         stageParameters[i].speed = 0; 
 
          // Duration
          //uint32_t* TimeRanges[ARRAY_SIZE(RestTime)] = {RestTime};
-         uint32_t stage_duration = this->RandomDuration(RestTime[0], RestTime[1]);
+         uint32_t stage_duration = RandomDuration(RestTime[0], RestTime[1]);
          
-         this->stageParameters[i].duration = stage_duration; 
+         stageParameters[i].duration = stage_duration; 
                   
          break;
        }
@@ -31,13 +31,13 @@ void RandomizeBehaviors(void)
          // Speed
          int* Speeds[ARRAY_SIZE(Speeds1)] = {Speeds1};
          int new_speed = RandomSpeeds(Speeds);
-         this->stageParameters[i].speed = new_speed;
+         stageParameters[i].speed = new_speed;
             
          // Duration
          //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
-         uint32_t stage_duration = this->RandomDuration(MoveTime[0], MoveTime[1]);
+         uint32_t stage_duration = RandomDuration(MoveTime[0], MoveTime[1]);
          
-         this->stageParameters[i].duration = stage_duration; 
+         stageParameters[i].duration = stage_duration; 
         
          break;
        }
@@ -47,13 +47,13 @@ void RandomizeBehaviors(void)
          // Speed
          int* Speeds[ARRAY_SIZE(Speeds2)] = {Speeds2};
          int new_speed = RandomSpeeds(Speeds);
-         this->stageParameters[i].speed = new_speed;
+         stageParameters[i].speed = new_speed;
          
          // Duration
          //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
-         uint32_t stage_duration = this->RandomDuration(MoveTime[0], MoveTime[1]);
+         uint32_t stage_duration = RandomDuration(MoveTime[0], MoveTime[1]);
          
-         this->stageParameters[i].duration = stage_duration; 
+         stageParameters[i].duration = stage_duration; 
          
          break;
        }
