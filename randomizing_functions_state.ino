@@ -161,7 +161,7 @@ void HeaderReport(int count)
   
   // Report total number of stages
   Serial.print("Total number of stages: ");
-  Serial.println(count);
+  Serial.println(count + 1);
 
   // report speeds and times HeaderReport(int randomTime.count); 
   Serial.print("Time, Speed");

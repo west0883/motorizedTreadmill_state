@@ -106,17 +106,19 @@ void MouseRunner::StartNewTrial(void)
     this->currentStage = 0;
 
     // Get total number of stages. 
-    this->stageTotal = ARRAY_SIZE(stageBehaviors); 
+    this->stageTotal = ARRAY_SIZE(stageBehaviors)-1; 
     
     // Randomize times and speeds based on stages. Edits stageParameters.
     RandomizeBehaviors();
 
     // Randomize accelerations based on newly-edited stageParameters.
-    randomizeAccel(ARRAY_SIZE(stageBehaviors));
+    randomizeAccel(ARRAY_SIZE(stageBehaviors)-1);
 
     // Report stages to be run
-    HeaderReport(ARRAY_SIZE(stageBehaviors));
-  
+    HeaderReport(ARRAY_SIZE(stageBehaviors)-1);
+
+    Serial.println(ARRAY_SIZE(stageBehaviors));
+    
     // If using a trigger, print out that it's waiting.
     if (useTrigger)
     {
