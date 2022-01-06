@@ -21,7 +21,7 @@ struct time_outputs {
 
 static void RandomizeBehaviors(void);
 uint32_t RandomDuration(uint32_t MinTime, uint32_t MaxTime);
-int RandomSpeeds(int* Speeds[]);
+int RandomSpeeds(int number_of_speeds);
 static void randomizeAccel(int count);
 uint32_t GetTotalTime(int count);
 void Report(float targetSpeed, int activityTag, String message);

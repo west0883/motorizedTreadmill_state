@@ -18,7 +18,6 @@ void RandomizeBehaviors(void)
          stageParameters[i].speed = 0; 
 
          // Duration
-         //uint32_t* TimeRanges[ARRAY_SIZE(RestTime)] = {RestTime};
          uint32_t stage_duration = RandomDuration(RestTime[0], RestTime[1]);
          
          stageParameters[i].duration = stage_duration; 
@@ -29,12 +28,11 @@ void RandomizeBehaviors(void)
        case BehaviorType::Movement1:
        {
          // Speed
-         int* Speeds[ARRAY_SIZE(Speeds1)] = {Speeds1};
-         int new_speed = RandomSpeeds(Speeds);
-         stageParameters[i].speed = new_speed;
+         int number_of_speeds = ARRAY_SIZE(Speeds1);
+         int j = RandomSpeeds(number_of_speeds);
+         stageParameters[i].speed = Speeds1[j];
             
          // Duration
-         //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
          uint32_t stage_duration = RandomDuration(MoveTime[0], MoveTime[1]);
          
          stageParameters[i].duration = stage_duration; 
@@ -45,12 +43,11 @@ void RandomizeBehaviors(void)
        case BehaviorType::Movement2:
        {
          // Speed
-         int* Speeds[ARRAY_SIZE(Speeds2)] = {Speeds2};
-         int new_speed = RandomSpeeds(Speeds);
-         stageParameters[i].speed = new_speed;
+         int number_of_speeds = ARRAY_SIZE(Speeds2);
+         int j = RandomSpeeds(number_of_speeds);
+         stageParameters[i].speed = Speeds2[j];
          
          // Duration
-         //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
          uint32_t stage_duration = RandomDuration(MoveTime[0], MoveTime[1]);
          
          stageParameters[i].duration = stage_duration; 
@@ -75,17 +72,12 @@ uint32_t RandomDuration(uint32_t MinTime, uint32_t MaxTime)
   return stage_duration;
 }
 
-int RandomSpeeds(int* Speeds[])
+int RandomSpeeds(int number_of_speeds)
 {
-  // Pick a random index within the speed array
-  size_t j = random(0, ARRAY_SIZE(Speeds));
-
-  // Place in parameter array
-  int* new_speed_ptr = Speeds[j];
-  int new_speed;
-  new_speed = *new_speed_ptr;
-  return new_speed;
+  size_t j = random(0, number_of_speeds);
+  return j;
 }
+
 // Creates a function that randomizes the speed order. Make dependent on speedDiff value to determine what kind of change it is.
 static void randomizeAccel(int count)
 {

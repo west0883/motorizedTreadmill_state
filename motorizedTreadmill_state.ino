@@ -15,8 +15,8 @@
 // PARAMETERS TO EDIT
 
 // Write out what speeds you want to include. Both must not be empty, even if one isn't use.
-static int Speeds1[] = {800};
-static int Speeds2[] = {600}; 
+static int Speeds1[] = {600, 800};
+static int Speeds2[] = {600, 800}; 
 
 // Time range for rest and movement (in seconds)
 static uint32_t RestTime[] = {10, 35};
@@ -30,14 +30,19 @@ static constexpr int accelsSpeedChange[] = {400}; //200, 800
 static struct StageBehaviors stageBehaviors[] = {
     {BehaviorType::Rest,     },
     {BehaviorType::Movement1 },
+    {BehaviorType::Movement2 },
     {BehaviorType::Rest      },
     {BehaviorType::Movement1 },
+    {BehaviorType::Movement2 },
     {BehaviorType::Rest      },
     {BehaviorType::Movement1 },
+    {BehaviorType::Movement2 },
     {BehaviorType::Rest      },
     {BehaviorType::Movement1 },
+    {BehaviorType::Movement2 },
     {BehaviorType::Rest      },
     {BehaviorType::Movement1 },
+    {BehaviorType::Movement2 },
     {BehaviorType::Rest      }
 };
 
