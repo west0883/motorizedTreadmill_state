@@ -15,12 +15,12 @@
 // PARAMETERS TO EDIT
 
 // Write out what speeds you want to include. Both must not be empty, even if one isn't use.
-static int Speeds1[] = {600, 800};
-static int Speeds2[] = {600, 800};
+static int Speeds1[] = {800};
+static int Speeds2[] = {800};
 
 // Time range for rest and movement (in seconds)
-static uint32_t RestTime[] = {10, 35};
-static uint32_t MoveTime[] = {10, 25};
+static uint32_t RestTime[] = {10, 30};
+static uint32_t MoveTime[] = {10, 30};
 
 // write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
 static constexpr int accelsStartStop[] = {400}; //400, 800
@@ -30,24 +30,19 @@ static constexpr int accelsSpeedChange[] = {200}; //200, 800
 static struct StageBehaviors stageBehaviors[] = {
   {BehaviorType::Rest,     },
   {BehaviorType::Movement1 },
-  {BehaviorType::Movement2 },
   {BehaviorType::Rest      },
   {BehaviorType::Movement1 },
-  {BehaviorType::Movement2 },
   {BehaviorType::Rest      },
   {BehaviorType::Movement1 },
-  {BehaviorType::Movement2 },
   {BehaviorType::Rest      },
   {BehaviorType::Movement1 },
-  {BehaviorType::Movement2 },
   {BehaviorType::Rest      },
   {BehaviorType::Movement1 },
-  {BehaviorType::Movement2 },
   {BehaviorType::Rest      }
 };
 
 // The amount of time before a stage switch the mouse is given the warning sound (ms).
-uint32_t WarnTime = 1500;
+uint32_t WarnTime = 2000;
 
 // Flag for if the trial number count (used with Putty) should be used, and the initial trial number (1 less than first actual).
 bool useTrialNumber = true;
