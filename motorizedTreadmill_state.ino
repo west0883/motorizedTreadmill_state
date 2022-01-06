@@ -14,11 +14,11 @@
 
 // write out what speeds you want to include; ***YOU CAN EDIT THIS***
 static int Speeds1[] = {800};
-static int Speeds2[] = {}; 
+static int Speeds2[] = {600}; 
 
 // Time range for rest and movement (in seconds)
-static int RestTime[] = {5, 30};
-static int MoveTime[] = {5, 15};
+static uint32_t RestTime[] = {5, 30};
+static uint32_t MoveTime[] = {5, 15};
 
 // write out what accelerations you want to include for starts and stops, speed changes(steps/s/s):
 static constexpr int accelsStartStop[] = {400}; //400, 800

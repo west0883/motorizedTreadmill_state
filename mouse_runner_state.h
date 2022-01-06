@@ -102,7 +102,7 @@ class MouseRunner
         MouseRunner(const struct StageParameters *stageParameters, Motor &motor, WarningTone &warningTone);
   
         void RandomizeBehaviors(void);
-        uint32_t RandomDuration(int* TimeRanges[]);
+        uint32_t RandomDuration(uint32_t MinTime, uint32_t MaxTime);
         int RandomSpeeds(int* Speeds[]);
         void Start(void);
         void Stop(void);

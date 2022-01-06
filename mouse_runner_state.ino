@@ -35,8 +35,8 @@ void MouseRunner::RandomizeBehaviors(void)
          this->stageParameters[i].speed = 0; 
 
          // Duration
-         int* TimeRanges[ARRAY_SIZE(RestTime)] = {RestTime};
-         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         //uint32_t* TimeRanges[ARRAY_SIZE(RestTime)] = {RestTime};
+         uint32_t stage_duration = this->RandomDuration(RestTime[0], RestTime[1]);
          
          this->stageParameters[i].duration = stage_duration; 
                   
@@ -46,10 +46,13 @@ void MouseRunner::RandomizeBehaviors(void)
        case BehaviorType::Movement1:
        {
          // Speed
-         
+         int* Speeds[ARRAY_SIZE(Speeds1)] = {Speeds1};
+         int new_speed = RandomSpeeds(Speeds);
+         this->stageParameters[i].speed = new_speed;
+            
          // Duration
-         int* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
-         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
+         uint32_t stage_duration = this->RandomDuration(MoveTime[0], MoveTime[1]);
          
          this->stageParameters[i].duration = stage_duration; 
         
@@ -59,10 +62,13 @@ void MouseRunner::RandomizeBehaviors(void)
        case BehaviorType::Movement2:
        {
          // Speed
-
+         int* Speeds[ARRAY_SIZE(Speeds2)] = {Speeds2};
+         int new_speed = RandomSpeeds(Speeds);
+         this->stageParameters[i].speed = new_speed;
+         
          // Duration
-         int* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
-         uint32_t stage_duration = this->RandomDuration(TimeRanges);
+         //uint32_t* TimeRanges[ARRAY_SIZE(MoveTime)] = {MoveTime};
+         uint32_t stage_duration = this->RandomDuration(MoveTime[0], MoveTime[1]);
          
          this->stageParameters[i].duration = stage_duration; 
          
@@ -72,10 +78,10 @@ void MouseRunner::RandomizeBehaviors(void)
   }
 }
 
-uint32_t MouseRunner::RandomDuration(int* TimeRanges[])
+uint32_t MouseRunner::RandomDuration(uint32_t MinTime, uint32_t MaxTime)
 {
   // Find a random time within the range
-  uint32_t stage_duration = random(TimeRanges[0], TimeRanges[1] + 1) * (1000);
+  uint32_t stage_duration = random(MinTime, MaxTime + 1) * (1000);
   
   return stage_duration;
 }
@@ -86,7 +92,10 @@ int MouseRunner::RandomSpeeds(int* Speeds[])
   size_t j = random(0, ARRAY_SIZE(Speeds));
 
   // Place in parameter array
-  uint32_t stage_duration = Speeds[j];
+  int* new_speed_ptr = Speeds[j];
+  int new_speed;
+  new_speed = *new_speed_ptr;
+  return new_speed;
 }
 /**
  * \brief Starts the mouse runner
