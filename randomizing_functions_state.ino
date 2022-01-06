@@ -3,8 +3,6 @@
 
 // Helper functions run at setup. 
 
-
-
 // Creates a function that randomizes the speed order. Make dependent on speedDiff value to determine what kind of change it is.
 static void randomizeAccel(int count)
 {
